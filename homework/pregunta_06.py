@@ -26,3 +26,27 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+
+    archivo = "files/input/data.csv"
+    diccionario = {}
+
+    with open(archivo, 'r') as file:
+        for linea in file:
+            cadena = linea.split('\t')[4].strip()
+            numeros = cadena.split(',')
+            
+            for num in numeros:
+                clave, valor = num.split(':')
+                valor = int(valor)
+
+                if clave in diccionario:
+                    diccionario[clave].append(valor)
+                else:
+                    diccionario[clave] = [valor]
+    
+    respuesta = [(clave, min(diccionario[clave]), max(diccionario[clave]))
+                 for clave in sorted(diccionario.keys())]
+    return respuesta
+
+impresion = pregunta_06()
+print(impresion)

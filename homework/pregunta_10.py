@@ -20,3 +20,27 @@ def pregunta_10():
 
 
     """
+    archivo = "files/input/data.csv"
+    lista = []
+ 
+    #LEE EL ARCHIVO
+
+    with open(archivo, 'r') as file:
+        for linea in file:
+            #SEPARA CADA FILA COMO UNA COLUMNA ('E' , .... , 'jjj:12,bbb:3,ddd:9,ggg:8,hhh:2')
+            columnas = linea.strip().split('\t')
+            letra = columnas[0]
+            columna4 = columnas[3]
+            columna5 = columnas[4]
+        
+            #CUENTA CUANTOS ELEMENTOS HAY EN LA COLUMNA 4 Y COLUMNA 5
+            cantidad_columna4 = len(columna4.split(','))
+            cantidad_columna5 = len(columna5.split(','))
+
+            #AÑADE LAS VARIABLES A UNA LISTA
+            lista.append((letra,cantidad_columna4,cantidad_columna5))
+    
+    return lista
+
+print(pregunta_10())
+        

@@ -16,3 +16,25 @@ def pregunta_11():
 
 
     """
+    archivo = "files/input/data.csv"
+    diccionario = {}
+ 
+    #LEE EL ARCHIVO
+
+    with open(archivo, 'r') as file:
+        for linea in file:
+            fila = linea.split('\t')
+            numeros = int(fila[1])
+            letras = fila[3]
+            letras = letras.split(',')
+        
+            for letra in letras:
+                if letra in diccionario:
+                    diccionario[letra] += numeros
+                else:
+                    diccionario[letra] = numeros
+
+    return dict(sorted(diccionario.items()))
+
+print(pregunta_11()) 
+

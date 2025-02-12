@@ -25,3 +25,22 @@ def pregunta_07():
      (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
 
     """
+    archivo = "files/input/data.csv"
+    diccionario = {}
+
+    with open(archivo, 'r') as file:
+        for linea in file:
+            letra = linea.split('\t')[0]
+            numero = int(linea.split('\t')[1])
+
+            if numero in diccionario:
+                diccionario[numero].append(letra)
+            else:
+                diccionario[numero] = [letra]
+    
+    respuesta = [(letra,numero)
+                 for letra,numero in sorted(diccionario.items())]
+    return respuesta
+
+impresion = pregunta_07()
+print(impresion)

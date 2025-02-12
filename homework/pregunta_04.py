@@ -26,3 +26,26 @@ def pregunta_04():
      ('12', 3)]
 
     """
+    archivo = "files/input/data.csv"
+    diccionario = {}
+
+    #LEE EL ARCHIVO
+    with open(archivo, 'r') as file:
+        for linea in file:
+            #De cada fila crea una lista separa por '-', lo que da como resultado ['E\t1\t1999', '02', '28\tb,g,f\tjjj:12,bbb:3,ddd:9,ggg:8,hhh:2\n']. Y de ahí toma el primer elemento, osea el mes '02'
+            mes = linea.split('-')[1]
+
+            #Verifica si el mes existe como CLAVE en el diccionario, si es así le suma 1 al VALOR existente
+            if mes in diccionario:
+                diccionario[mes] += 1
+            
+            #Si el mes no existe como CLAVE en el diccionario, crea la CLAVE y un VALOR igual a 1 para dicha CLAVE
+            else:
+                diccionario[mes] = 1
+    
+    #Crea una lista ordenada que contiene tuplas como elementos
+    respuesta = sorted(diccionario.items())
+    return respuesta
+
+impresion = pregunta_04()
+print(impresion)
